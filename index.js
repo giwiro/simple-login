@@ -34,7 +34,7 @@ app.use(session(CONFIG, app));
 winston.level = 'info';
 
 // Set up routes
-router.post('/auth/login', async ctx => {
+router.post('/api/auth/login', async ctx => {
     const username = ctx.request.body.username;
     const password = ctx.request.body.password;
     
@@ -60,12 +60,12 @@ router.post('/auth/login', async ctx => {
     }
 });
 
-router.get('/auth/logout', async ctx => {
+router.get('/api/auth/logout', async ctx => {
     ctx.session = null;
     ctx.status = 204;
 });
 
-router.get('/data/test', async ctx => {
+router.get('/api/data/test', async ctx => {
     if (!ctx.session.user) {
         ctx.status = 401;
         ctx.body = {
